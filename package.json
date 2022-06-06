@@ -1,0 +1,21 @@
+{
+  "name": "inventory-tracking-web-application",
+  "version": "1.0.0",
+  "description": "inventory-test",
+  "main": "app.js",
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "null"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Ben",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8"
+  }
+}
