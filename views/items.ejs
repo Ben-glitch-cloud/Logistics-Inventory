@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href="/public/css/items.css">
+    <title>Inventory List</title>
 </head>
-<body>
-    <% InventoryItemsList.forEach((item) => { %>
-        <p><%= item['itemName'] %></p>
-        <p><%= item['itemDescription'] %></p>
-        <p><%= item['quantity'] %></p>
-        <p><%= item['Date'] %></p>
-    <% }) %>  
-</body>
+<body>  
+    <div class="ItemsList">
+        <table>
+            <tr>
+                <th>Name</th> 
+                <th>Descriptions</th> 
+                <th>Quantity</th> 
+                <th>Date</th>
+            </tr>   
+            <% InventoryItemsList.forEach((item) => { %> 
+                <tr>
+                    <td><%= item['itemName'] %></td> 
+                    <td><%= item['itemDescription']%></td> 
+                    <td><%= item['quantity']%></td> 
+                    <td><%= item['Date']%></td> 
+                </tr>  
+            <% }) %> 
+        </table>
+    </div>
+</body> 
 </html>
