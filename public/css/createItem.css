@@ -35,46 +35,26 @@ body{
 .title ul li:hover{
     color: #6699CC; 
     text-decoration: underline;
-}
-
-.ItemsList{
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-}
-
-table {
-    width: 80%;
-    margin: 0% 2.5%;  
-    border-collapse: separate; 
-}  
-
-tr{
-    
-}  
-
-th{
-    height: 40px; 
-    font-family: Arial, Helvetica, sans-serif; 
-    border-radius: 5px; 
-    background-color: #6699CC;
-    color: white; 
-    border: 2px solid white; 
-   padding: 0px 5px;
-}
-
-td{
-    border: 2px solid white; 
-    font-family: Arial, Helvetica, sans-serif; 
-    padding: 5px 10px; 
-    background-color: #CDDEEE;
-    border-radius: 5px;
-    text-align: center;
 } 
 
+.formCon{
+    width: 100%; 
+    display: flex; 
+    justify-content: center;
+} 
 
+form{
+    width: 30%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: flex-start;
+}
 
-
-
+form label{
+    padding: 5px 0px; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+} 
 

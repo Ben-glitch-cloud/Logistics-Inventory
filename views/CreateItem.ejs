@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/createItem.css">
+    <title>Document</title>
+</head>
+    <body>
+        <div class="title">
+            <p>BL Inventory Manager</p>
+            <ul>
+                <li>Home</li> 
+                <li>Add Item</li> 
+                <li>Add Warehouse</li> 
+                <li>About</li>
+            </ul>
+        </div>   
+        <div class="formCon"> 
+            <form>  
+                <p>Create Item</p>
+                <label>Item Name</label>
+                <textarea type="text"></textarea>
+                <label>Description</label>
+                <textarea type="text"></textarea>
+                <label>Quanity</label>
+                <input type="number" min="1"/>
+                <label>Warehouse</label> 
+                <select> 
+                    <option>Choose Warhouse</option>
+                    <option>London</option>
+                    <option>Southampton</option>
+                    <option>Manchester</option>
+                </select> 
+                <input type="submit" value="submit"/>
+            </form>
+        </div>
+    </body>
+</html>

@@ -16,6 +16,8 @@
   "author": "Ben",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.8"
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "mongodb": "^4.6.0"
   }
 }

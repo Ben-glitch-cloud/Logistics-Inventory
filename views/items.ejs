@@ -7,21 +7,36 @@
     <link rel="stylesheet" type="text/css" href="/public/css/items.css">
     <title>Inventory List</title>
 </head>
-<body>  
+<body>   
+    <div class="title">
+        <p>BL Inventory Manager</p>
+        <ul>
+            <li>Home</li> 
+            <li>Add Item</li> 
+            <li>Add Warehouse</li> 
+            <li>About</li>
+        </ul>
+    </div> 
     <div class="ItemsList">
         <table>
             <tr>
                 <th>Name</th> 
                 <th>Descriptions</th> 
                 <th>Quantity</th> 
-                <th>Date</th>
+                <th>Date</th> 
+                <th></th>
             </tr>   
             <% InventoryItemsList.forEach((item) => { %> 
                 <tr>
                     <td><%= item['itemName'] %></td> 
                     <td><%= item['itemDescription']%></td> 
                     <td><%= item['quantity']%></td> 
-                    <td><%= item['Date']%></td> 
+                    <td><%= item['currentDate']%></td>   
+                    <% if(item['warehouseAssigned']) { %>  
+                        <td>Edit Warehouse</td>
+                    <% } else { %>  
+                        <td>Add Warehouse</td>
+                    <% } %>
                 </tr>  
             <% }) %> 
         </table>

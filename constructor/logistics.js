@@ -1,10 +1,31 @@
 "use strict";
 
-class InventoryManager{
-    GetInventoryItemsList() {
-        let ItemsList = [{id: 0, itemName: 'Paper sheets', itemDescription: 'HR White Office A4 Paper 80gsm (Pack of 2500) HR F0317', quantity: 4, wareHouse: false, Date: "04/05/2022"}, {id: 1, itemName: 'Ballpoint Fountain and Rollerball Pen Kit', itemDescription: 'A three pen kit with a leather case.', quantity: 16, wareHouse: false, Date: "20/07/2022"}, {id: 2, itemName: 'pencils', itemDescription: 'Standed Noris school Pencils', quantity: 24, wareHouse: false, Date: "01/03/2022"}] 
-        return ItemsList
-    }
+const { dotenv } = require('dotenv').config()
+
+const { MongoClient } = require('mongodb');   
+
+let userName = process.env.USERNAME
+let Password = process.env.PASSWORD
+
+const uri = `mongodb+srv://${userName}:${Password}@catalogueinventory.xontjal.mongodb.net/?retryWrites=true&w=majority`;
+
+const client = new MongoClient(uri);  
+
+class InventoryManager{ 
+    // Read all Item in the Inventory
+    async GetInventoryItemsList() { 
+        try{
+            await client.connect();  
+            let AllInventoryResults = await client.db("CatalogueCollection").collection("InventoryItems").find().toArray() 
+            return AllInventoryResults
+        }catch(error){
+            console.log(`Error ${error}`)
+        }finally{
+            await client.close(); 
+        } 
+    } 
 }  
 
-module.exports = InventoryManager
+module.exports = InventoryManager 
+
+
