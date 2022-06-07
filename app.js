@@ -28,18 +28,25 @@ app.post('/submitNewItem', async (req, res) => {
   res.redirect('/viewItems')
 }) 
 
-app.get('/oneItem/:id', async (req, res) => {
+app.get('/getOneItem/:id/:type', async (req, res) => {
   const ItemID = req.params.id  
-  const ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID) 
-  res.render('DeleteItem', {InventoryItem: ResultForOneItem})
+  const ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID)  
+  if(req.params.type === 'delete'){ res.render('DeleteItem', {InventoryItem: ResultForOneItem})} 
+  if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem})} 
 }) 
 
-app.get('/DeleteItem/:id', async (req, res) => {
+app.get('/deleteItem/:id', async (req, res) => {
   const ItemID = req.params.id  
   await inventorymanager.DeleteInventoryItem(ItemID) 
   res.redirect('/viewItems')
-})
+}) 
 
+app.post('/editItem/:id', async (req, res) => {
+  const ItemID = req.params.id
+  const EditdItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
+  await inventorymanager.EditInventoryItem(ItemID, EditdItemObject) 
+  res.redirect('/viewItems')
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

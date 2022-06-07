@@ -19,9 +19,11 @@
     </div>  
     <div class="ItemInfoCon">  
         <div class="ItemInfoPage"> 
-            <table>
+            <table> 
+                <col>
+                <colgroup span="2"></colgroup>
                 <tr>
-                    <th>Item Information</th> 
+                    <th colspan="2" scope="colgroup">Item Information</th> 
                 </tr> 
                 <tr>
                     <td>Item Name</td>
@@ -40,10 +42,8 @@
                     <td><%= InventoryItem['currentDate'] %></td>
                 </tr>
             </table>
-
-
-            <form method='GET' action="/DeleteItem/<%= InventoryItem['_id'] %>"> 
-                <input type='submit' value='Delete'/>
+            <form method='GET' action="/deleteItem/<%= InventoryItem['_id'] %>"> 
+                <input type='submit' value='Delete Item'/>
             </form>
         </div>
     </div>

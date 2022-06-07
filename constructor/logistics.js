@@ -28,8 +28,7 @@ class InventoryManager{
     }    
 
     // new Item adding current time and warhouse location
-    NewItemInfo(NewItemObject){
-        NewItemObject['warehouseAssigned'] !== 'Choose Warhouse' ? NewItemObject['warehouseAssigned'] = true : NewItemObject['warehouseAssigned'] = false  
+    NewItemInfo(NewItemObject){ 
         NewItemObject['quantity'] = Number(NewItemObject['quantity'])
         let CurrentDate = new Date()  
         NewItemObject['currentDate'] = CurrentDate.toDateString().split(' ').join('/') 
@@ -50,7 +49,6 @@ class InventoryManager{
         }
     }  
 
-
     async FindInventoryItem(ItemID){
         try{
             await client.connect()
@@ -70,6 +68,18 @@ class InventoryManager{
             return true
         }catch(error){
             console.log(error)
+        }finally{
+            client.close()
+        }
+    } 
+
+    async EditInventoryItem(ItemID, EditdItemObject){
+        try{
+            await client.connect()
+            await client.db("CatalogueCollection").collection("InventoryItems").updateOne({_id: ObjectId(ItemID)}, {$set: EditdItemObject}) 
+            return true
+        }catch(error){
+            console.log(`Error ${error}`)
         }finally{
             client.close()
         }

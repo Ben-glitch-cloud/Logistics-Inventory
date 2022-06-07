@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/editItem.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title">
+        <p>BL Inventory Manager</p>
+        <ul>
+            <li>Home</li> 
+            <li><a href="/addItem">Add Item</a></li> 
+            <li>Add Warehouse</li> 
+            <li>About</li>
+        </ul>
+    </div> 
+    <div class="formCon"> 
+    <form method="POST" action="/editItem/<%= InventoryItem['_id'] %>">   
+        <p>Edit Item</p>
+        <label>Item Name</label>
+        <input type="text" name="itemName" id='itemName'/>
+        <label>Description</label>
+        <input type="text" name="itemDescription" id='itemDescription'/>
+        <label>Quanity</label>
+        <input type="number" min="1" name='quanity' id='quantity'/>
+        <label>Warehouse</label> 
+        <select name="warehouseAssigned" id="warehouseAssigned"> 
+            <option>Choose Warhouse</option>
+            <option>London</option>
+            <option>Southampton</option>
+            <option>Manchester</option>
+        </select> 
+        <input type="submit" value="Edit Item"/>
+    </form> 
+    <div>
+</body> 
+    <script>
+        document.getElementById('itemName').value = '<%= InventoryItem['itemName'] %>' 
+        document.getElementById('itemDescription').value = '<%= InventoryItem['itemDescription'] %>' 
+        document.getElementById('quantity').value = '<%= InventoryItem['quantity'] %>'  
+        document.getElementById('warehouseAssigned').value = '<%= InventoryItem['warehouseAssigned'] %>'  
+    </script>
+</html> 

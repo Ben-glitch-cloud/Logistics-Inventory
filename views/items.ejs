@@ -24,7 +24,7 @@
                 <th>Descriptions</th> 
                 <th>Quantity</th> 
                 <th>Date</th> 
-                <th></th>
+                <th>Warehouse</th> 
             </tr>   
             <% InventoryItemsList.forEach((item) => { %> 
                 <tr>
@@ -32,14 +32,18 @@
                     <td><%= item['itemDescription']%></td> 
                     <td><%= item['quantity']%></td> 
                     <td><%= item['currentDate']%></td>   
-                    <% if(item['warehouseAssigned']) { %>  
-                        <td>Edit Warehouse</td>
+                    <% if(item['warehouseAssigned'] !== 'Choose Warhouse') { %>  
+                        <td><%= item['warehouseAssigned']%></td>
                     <% } else { %>  
-                        <td>Add Warehouse</td>
+                        <td>null</td>
                     <% } %> 
-                    <td> 
-                        <form method='GET' action="/oneItem/<%= item['_id'] %>"> 
+                    <td class="NavTableArea"> 
+                        <form method='GET' action="/getOneItem/<%= item['_id'] %>/delete"> 
                             <input type='submit' value='Delete'/>
+                        </form>  
+
+                        <form method='GET' action="/getOneItem/<%= item['_id'] %>/edit"> 
+                            <input type='submit' value='Edit'/>
                         </form>
                     </td>
                 </tr>  

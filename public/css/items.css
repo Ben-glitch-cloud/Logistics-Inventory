@@ -73,6 +73,19 @@ td{
     text-align: center;
 } 
 
+.NavTableArea{
+   display: flex; 
+   justify-content: center; 
+   align-items: center; 
+   align-content: center;
+   flex-direction: row; 
+    background-color: white;
+} 
+
+.NavTableArea input{
+    margin: 0px 5px;
+}
+
 
 
 
