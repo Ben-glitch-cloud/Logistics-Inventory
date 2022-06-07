@@ -4,6 +4,8 @@ const { dotenv } = require('dotenv').config()
 
 const { MongoClient } = require('mongodb');   
 
+const ObjectId = require('mongodb').ObjectID;
+
 let userName = process.env.USERNAME
 let Password = process.env.PASSWORD
 
@@ -16,7 +18,7 @@ class InventoryManager{
     async GetInventoryItemsList() { 
         try{
             await client.connect();  
-            let AllInventoryResults = await client.db("CatalogueCollection").collection("InventoryItems").find().toArray() 
+            let AllInventoryResults = await client.db("CatalogueCollection").collection("InventoryItems").find().toArray()  
             return AllInventoryResults
         }catch(error){
             console.log(`Error ${error}`)
@@ -27,7 +29,8 @@ class InventoryManager{
 
     // new Item adding current time and warhouse location
     NewItemInfo(NewItemObject){
-        NewItemObject['warehouseAssigned'] !== 'Choose Warhouse' ? NewItemObject['warehouseAssigned'] = true : NewItemObject['warehouseAssigned'] = false 
+        NewItemObject['warehouseAssigned'] !== 'Choose Warhouse' ? NewItemObject['warehouseAssigned'] = true : NewItemObject['warehouseAssigned'] = false  
+        NewItemObject['quantity'] = Number(NewItemObject['quantity'])
         let CurrentDate = new Date()  
         NewItemObject['currentDate'] = CurrentDate.toDateString().split(' ').join('/') 
         return NewItemObject
@@ -45,7 +48,32 @@ class InventoryManager{
         }finally{
             await client.close()
         }
+    }  
+
+
+    async FindInventoryItem(ItemID){
+        try{
+            await client.connect()
+            const ItemResult = await client.db("CatalogueCollection").collection("InventoryItems").findOne({'_id': ObjectId(ItemID)}) 
+            return ItemResult
+        }catch(error){
+            console.log(`Error: ${error}`)
+        }finally{
+            await client.close()
+        }
     } 
+
+    async DeleteInventoryItem(ItemID){
+        try{
+            await client.connect()
+            await client.db("CatalogueCollection").collection("InventoryItems").deleteOne({'_id': ObjectId(ItemID)}) 
+            return true
+        }catch(error){
+            console.log(error)
+        }finally{
+            client.close()
+        }
+    }
 }  
 
 module.exports = InventoryManager 

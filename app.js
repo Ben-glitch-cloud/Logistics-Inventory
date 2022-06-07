@@ -26,6 +26,18 @@ app.post('/submitNewItem', async (req, res) => {
   const NewItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
   await inventorymanager.CreateNewInventoryItem(NewItemObject)
   res.redirect('/viewItems')
+}) 
+
+app.get('/oneItem/:id', async (req, res) => {
+  const ItemID = req.params.id  
+  const ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID) 
+  res.render('DeleteItem', {InventoryItem: ResultForOneItem})
+}) 
+
+app.get('/DeleteItem/:id', async (req, res) => {
+  const ItemID = req.params.id  
+  await inventorymanager.DeleteInventoryItem(ItemID) 
+  res.redirect('/viewItems')
 })
 
 

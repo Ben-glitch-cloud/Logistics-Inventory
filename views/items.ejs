@@ -12,7 +12,7 @@
         <p>BL Inventory Manager</p>
         <ul>
             <li>Home</li> 
-            <li>Add Item</li> 
+            <li><a href="/addItem">Add Item</a></li> 
             <li>Add Warehouse</li> 
             <li>About</li>
         </ul>
@@ -36,7 +36,12 @@
                         <td>Edit Warehouse</td>
                     <% } else { %>  
                         <td>Add Warehouse</td>
-                    <% } %>
+                    <% } %> 
+                    <td> 
+                        <form method='GET' action="/oneItem/<%= item['_id'] %>"> 
+                            <input type='submit' value='Delete'/>
+                        </form>
+                    </td>
                 </tr>  
             <% }) %> 
         </table>
