@@ -18,16 +18,16 @@
             </ul>
         </div>   
         <div class="formCon"> 
-            <form>  
+            <form method="POST" action="/submitNewItem">   
                 <p>Create Item</p>
                 <label>Item Name</label>
-                <textarea type="text"></textarea>
+                <input type="text" name="itemName"/>
                 <label>Description</label>
-                <textarea type="text"></textarea>
+                <input type="text" name="itemDescription"/>
                 <label>Quanity</label>
-                <input type="number" min="1"/>
+                <input type="number" min="1" name='quanity'/>
                 <label>Warehouse</label> 
-                <select> 
+                <select name="warehouseAssigned"> 
                     <option>Choose Warhouse</option>
                     <option>London</option>
                     <option>Southampton</option>

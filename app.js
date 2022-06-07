@@ -8,6 +8,8 @@ app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').__express); 
 app.use('/public', express.static('public'));
 
+app.use(express.urlencoded({extended: true}))
+
 const InventoryManager = require('./constructor/logistics') 
 const inventorymanager = new InventoryManager
 
@@ -18,6 +20,12 @@ app.get('/viewItems', async (req, res) => {
 
 app.get('/addItem', (req, res) => {
   res.render('CreateItem')
+}) 
+
+app.post('/submitNewItem', async (req, res) => {
+  const NewItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
+  await inventorymanager.CreateNewInventoryItem(NewItemObject)
+  res.redirect('/viewItems')
 })
 
 
