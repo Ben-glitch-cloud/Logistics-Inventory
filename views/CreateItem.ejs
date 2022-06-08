@@ -18,8 +18,8 @@
             </ul>
         </div>   
         <div class="formCon"> 
-            <form method="POST" action="/submitNewItem">   
-                <p>Create Item</p>
+            <form method="POST" name="newItemForm" action="/submitNewItem" onsubmit="return validateForm()">   
+                <p class="formHeader">Create Item</p>
                 <label>Item Name</label>
                 <input type="text" name="itemName"/>
                 <label>Description</label>
@@ -33,8 +33,30 @@
                     <option>Southampton</option>
                     <option>Manchester</option>
                 </select> 
-                <input type="submit" value="submit"/>
+                <input class="submit" type="submit" value="submit"/>
             </form>
         </div>
-    </body>
+    </body> 
+    <script>
+        function validateForm() {
+        var itemName = document.forms["newItemForm"]["itemName"].value;
+        if (itemName == "") {
+            alert("Item must have a name.");
+            return false;
+        } 
+        
+        var itemName = document.forms["newItemForm"]["itemDescription"].value;
+        if (itemName == "") {
+            alert("Item must have a description.");
+            return false;
+        } 
+
+        var itemName = document.forms["newItemForm"]["quanity"].value;
+        if (itemName == '0' || itemName == 0 || itemName == '') {
+            alert("Item quanity must be higher than 0");
+            return false;
+        } 
+        
+        }
+    </script>
 </html>

@@ -84,6 +84,32 @@ td{
 
 .NavTableArea input{
     margin: 0px 5px;
+} 
+
+.Delete{
+    background-color: #DB1F48; 
+    border-radius: 5px; 
+    color: white; 
+    border: 2px solid #DB1F48;
+}  
+
+.Delete:hover{
+    background-color: #FFB7B0;
+    border: 2px solid #FFB7B0; 
+    color: black;
+}
+
+.Edit{
+    background-color: #01949A; 
+    border-radius: 5px; 
+    color: white; 
+    border: 2px solid #01949A;
+} 
+
+.Edit:hover{
+    background-color: #E9EAE0;
+    border: 2px solid #E9EAE0; 
+    color: black;
 }
 
 

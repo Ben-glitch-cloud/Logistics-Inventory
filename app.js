@@ -10,7 +10,10 @@ app.use('/public', express.static('public'));
 
 app.use(express.urlencoded({extended: true}))
 
-const InventoryManager = require('./constructor/logistics') 
+const InventoryManager = require('./constructor/logistics')  
+const AssignInventoryManager = require('./constructor/storage') 
+
+const assigninventorymanager = new AssignInventoryManager
 const inventorymanager = new InventoryManager
 
 app.get('/viewItems', async (req, res) => {   
@@ -22,9 +25,11 @@ app.get('/addItem', (req, res) => {
   res.render('CreateItem')
 }) 
 
-app.post('/submitNewItem', async (req, res) => {
-  const NewItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
-  await inventorymanager.CreateNewInventoryItem(NewItemObject)
+app.post('/submitNewItem', async (req, res) => { 
+
+  const NewItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}   
+
+  await inventorymanager.CreateNewInventoryItem(NewItemObject) 
   res.redirect('/viewItems')
 }) 
 
@@ -46,6 +51,21 @@ app.post('/editItem/:id', async (req, res) => {
   const EditdItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
   await inventorymanager.EditInventoryItem(ItemID, EditdItemObject) 
   res.redirect('/viewItems')
+}) 
+
+app.get('/warehouses', async (req, res) => { 
+  const WarehousesResult = await assigninventorymanager.GetStorageLocations()
+  res.render('Warehouses', {WarehousesList: WarehousesResult})
+})  
+
+app.get('/addNewWarehouse', (req, res) => {
+  res.render('CreateStoarge')
+})
+
+app.post('/submitNewWarehouse', async (req, res) => {
+  const NewStoargeLocation = {location: req.body.location, warehousesName: req.body.warehousesName, currentOperationalStatus: req.body.warehouseAssigned} 
+  await assigninventorymanager.CreateNewStoargeLocation(NewStoargeLocation)
+  res.redirect('/warehouses')
 })
 
 app.listen(port, () => {

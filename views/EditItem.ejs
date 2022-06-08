@@ -11,7 +11,7 @@
     <div class="title">
         <p>BL Inventory Manager</p>
         <ul>
-            <li>Home</li> 
+            <li><a href="/viewItems">Home</a></li> 
             <li><a href="/addItem">Add Item</a></li> 
             <li>Add Warehouse</li> 
             <li>About</li>
@@ -19,7 +19,7 @@
     </div> 
     <div class="formCon"> 
     <form method="POST" action="/editItem/<%= InventoryItem['_id'] %>">   
-        <p>Edit Item</p>
+        <p class="formHeader">Edit Item</p>
         <label>Item Name</label>
         <input type="text" name="itemName" id='itemName'/>
         <label>Description</label>
@@ -33,7 +33,7 @@
             <option>Southampton</option>
             <option>Manchester</option>
         </select> 
-        <input type="submit" value="Edit Item"/>
+        <input type="submit" class="submit" value="Edit Item"/>
     </form> 
     <div>
 </body> 
@@ -41,6 +41,8 @@
         document.getElementById('itemName').value = '<%= InventoryItem['itemName'] %>' 
         document.getElementById('itemDescription').value = '<%= InventoryItem['itemDescription'] %>' 
         document.getElementById('quantity').value = '<%= InventoryItem['quantity'] %>'  
-        document.getElementById('warehouseAssigned').value = '<%= InventoryItem['warehouseAssigned'] %>'  
+        document.getElementById('warehouseAssigned').value = '<%= InventoryItem['warehouseAssigned'] %>'   
+
+        // come back to this area and add a filter for times that are not edited. 
     </script>
 </html> 

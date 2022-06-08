@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="formCon"> 
+        <form method="POST" name="newStorageForm" action="/submitNewWarehouse">   
+            <p class="formHeader">Create Item</p>
+            <label>Location</label>
+            <input type="text" name="location"/>
+            <label>Warehouses Name</label>
+            <input type="text" name="warehousesName"/>
+            <label>Warehouse</label> 
+            <select name="warehouseAssigned"> 
+                <option>Warehouse in use</option>
+                <option>Warehouse not in use</option>
+            </select> 
+            <input class="submit" type="submit" value="submit"/>
+        </form>
+    </div>
+</body>
+</html>
