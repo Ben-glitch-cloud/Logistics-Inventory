@@ -36,12 +36,24 @@ class AssignInventoryManager{
         }finally{
             await client.close()
         }
+    } 
+
+    async FindWarehouseByName(WareHouseName){
+        try{
+            await client.connect()
+            const ItemResult = await client.db("StorageFacilities").collection("WarehousesAndLocations").findOne({'warehouseName': WareHouseName})   
+            return ItemResult !== null ? true : false
+        }catch(error){
+            console.log(`Error: ${error}`)
+        }finally{
+            await client.close()
+        }
     }
  
     async CreateNewStoargeLocation(NewStoargeLocation){
         try{
             await client.connect();  
-            const  modifiedNewStoargeLocation = this.NewStorageInfo(NewStoargeLocation)
+            const  modifiedNewStoargeLocation = this.NewStorageInfo(NewStoargeLocation) 
             await client.db("StorageFacilities").collection("WarehousesAndLocations").insertOne(modifiedNewStoargeLocation)
             return true
         }catch(error){

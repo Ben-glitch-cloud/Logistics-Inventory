@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').__express); 
 app.use('/public', express.static('public'));
 
+
 app.use(express.urlencoded({extended: true}))
 
 const InventoryManager = require('./constructor/logistics')  
@@ -21,7 +22,7 @@ app.get('/', (req, res) => { res.redirect('/viewItems')})
 app.get('/viewItems', async (req, res) => {   
     let AllInventoryResults = await inventorymanager.GetInventoryItemsList()
     res.render('Items', {InventoryItemsList: AllInventoryResults})
-}) 
+})  
 
 app.get('/addItem', async (req, res) => { 
   const WarehousesResult = await assigninventorymanager.GetStorageLocations() 
@@ -37,7 +38,8 @@ app.post('/submitNewItem', async (req, res) => {
 app.get('/getOneItem/:id/:type', async (req, res) => {
   const ItemID = req.params.id, ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID), WarehousesResult = await assigninventorymanager.GetStorageLocations()
   if(req.params.type === 'delete'){ res.render('DeleteItem', {InventoryItem: ResultForOneItem})} 
-  if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem, WarehousesList: WarehousesResult})} 
+  if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem, WarehousesList: WarehousesResult})}  
+  if(req.params.type === 'getOneItem'){ res.render('ViewItem', {InventoryItem: ResultForOneItem}) }
 }) 
 
 app.get('/deleteItem/:id', async (req, res) => {
@@ -57,14 +59,22 @@ app.get('/warehouses', async (req, res) => {
   res.render('Warehouses', {WarehousesList: WarehousesResult})
 })  
 
-app.get('/addNewWarehouse', (req, res) => {
+app.get('/addNewWarehouse', (req, res) => { 
   res.render('CreateWarehouse')
 })
 
 app.post('/submitNewWarehouse', async (req, res) => {
-  const NewStoargeLocation = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned} 
-  await assigninventorymanager.CreateNewStoargeLocation(NewStoargeLocation)
-  res.redirect('/warehouses')
+  const NewStoargeLocation = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned}  
+  const FindNameResult = await assigninventorymanager.FindWarehouseByName(NewStoargeLocation['warehouseName'])  
+  // fix the flash message 
+  console.log(FindNameResult)
+  if(FindNameResult){ 
+    // req.flash('message', 'welcome key is present');
+    res.redirect('/addNewWarehouse')
+  } else {
+    await assigninventorymanager.CreateNewStoargeLocation(NewStoargeLocation)    
+    res.redirect('/warehouses')
+  }
 }) 
 
 app.get('/getOneLocation/:id/:type', async (req, res) => {

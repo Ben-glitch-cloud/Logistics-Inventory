@@ -31,7 +31,7 @@
                 <select name="warehouseAssigned">   
                     <option>Choose Warhouse</option>
                     <% WarehousesList.forEach((item) => { %>
-                        <option><%= item['location'] %></option>
+                        <option><%= item['warehouseName'] %></option>
                     <% }) %>
                 </select> 
                 <input class="submit" type="submit" value="submit"/>

@@ -84,11 +84,13 @@ td{
 
 .NavTableArea{
    display: flex; 
-   justify-content: center; 
+   justify-content: flex-start; 
    align-items: center; 
-   align-content: center;
    flex-direction: row; 
-    background-color: white;
+    background-color: white; 
+    flex-wrap: wrap; 
+    width: 120px;
+    height: 50px;
 } 
 
 .NavTableArea input{
@@ -119,8 +121,34 @@ td{
     background-color: #E9EAE0;
     border: 2px solid #E9EAE0; 
     color: black;
+} 
+
+.ViewItem{
+    background-color: #FAD02C; 
+    border-radius: 5px; 
+    color: black; 
+    border: 2px solid #FAD02C;  
+    
+} 
+
+.ViewItem:hover{
+    color: white; 
+    background-color: #333652;
+    border: 2px solid #333652; 
 }
 
+.message{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+} 
+
+.message p{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 20px; 
+    color: #01949A;
+}
 
 
 

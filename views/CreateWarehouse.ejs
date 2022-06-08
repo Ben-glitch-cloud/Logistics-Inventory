@@ -19,7 +19,7 @@
         </ul>
     </div>  
     <div class="formCon"> 
-        <form method="POST" name="newStorageForm" action="/submitNewWarehouse">   
+        <form method="POST" name="newStorageForm" action="/submitNewWarehouse" onsubmit="return validateForm()">   
             <p class="formHeader">Create Warehouse</p>
             <label>Location</label>
             <input type="text" name="location"/>
@@ -27,6 +27,7 @@
             <input type="text" name="warehouseName"/>
             <label>Warehouse</label> 
             <select name="warehouseAssigned"> 
+                <option>Choose Warehouse Operation</option>
                 <option>Warehouse in use</option>
                 <option>Warehouse not in use</option>
             </select> 
@@ -34,4 +35,26 @@
         </form>
     </div>
 </body>
+<script>
+    function validateForm() {
+    var itemName = document.forms["newStorageForm"]["location"].value;
+    if (itemName == "") {
+        alert("Warehouse must have a location.");
+        return false;
+    } 
+    
+    var itemName = document.forms["newStorageForm"]["warehouseName"].value;
+    if (itemName == "") {
+        alert("Warehouse must have a Name.");
+        return false;
+    } 
+
+    var itemName = document.forms["newStorageForm"]["warehouseAssigned"].value;
+    if (itemName == "Choose Warehouse Operation") {
+        alert("What state/situation is the Warehouse in?");
+        return false;
+    } 
+    
+    }
+</script>
 </html>

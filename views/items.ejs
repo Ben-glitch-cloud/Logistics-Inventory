@@ -18,7 +18,7 @@
             <li>About</li>
         </ul>
     </div> 
-    <div class="ItemsList">
+    <div class="ItemsList"> 
         <table>
             <tr>
                 <th>Name</th> 
@@ -26,7 +26,7 @@
                 <th>Quantity</th> 
                 <th>Date</th> 
                 <th>Warehouse</th> 
-            </tr>   
+            </tr>    
             <% InventoryItemsList.forEach((item) => { %> 
                 <tr>
                     <td><%= item['itemName'] %></td> 
@@ -46,10 +46,17 @@
                         <form method='GET' action="/getOneItem/<%= item['_id'] %>/edit"> 
                             <input class="Edit" type='submit' value='Edit'/>
                         </form>
+
+                        <form method='GET' action="/getOneItem/<%= item['_id'] %>/getOneItem"> 
+                            <input class="ViewItem" type='submit' value='View Item'/>
+                        </form>
                     </td>
                 </tr>  
             <% }) %> 
         </table>
+    </div>  
+    <div class="message">
+        <p><%= InventoryItemsList.length === 0 ? 'No items' : null %></p>
     </div>
 </body> 
 </html>
