@@ -35,6 +35,15 @@ body{
 .title ul li:hover{
     color: #6699CC; 
     text-decoration: underline;
+} 
+
+a{
+    text-decoration: none; 
+    color: #274472;
+} 
+
+.currentPage{
+    text-decoration: underline;
 }
 
 .ItemsList{

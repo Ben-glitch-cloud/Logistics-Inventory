@@ -37,6 +37,15 @@ body{
     text-decoration: underline;
 }  
 
+a{
+    text-decoration: none; 
+    color: #274472;
+} 
+
+.currentPage{
+    text-decoration: underline;
+}
+
 .formHeader{
     font-size: 26px; 
     padding: 0px;  

@@ -16,6 +16,8 @@ const AssignInventoryManager = require('./constructor/storage')
 const assigninventorymanager = new AssignInventoryManager
 const inventorymanager = new InventoryManager
 
+app.get('/', (req, res) => { res.redirect('/viewItems')})
+
 app.get('/viewItems', async (req, res) => {   
     let AllInventoryResults = await inventorymanager.GetInventoryItemsList()
     res.render('Items', {InventoryItemsList: AllInventoryResults})
@@ -33,9 +35,7 @@ app.post('/submitNewItem', async (req, res) => {
 }) 
 
 app.get('/getOneItem/:id/:type', async (req, res) => {
-  const ItemID = req.params.id  
-  const ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID)  
-  const WarehousesResult = await assigninventorymanager.GetStorageLocations()
+  const ItemID = req.params.id, ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID), WarehousesResult = await assigninventorymanager.GetStorageLocations()
   if(req.params.type === 'delete'){ res.render('DeleteItem', {InventoryItem: ResultForOneItem})} 
   if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem, WarehousesList: WarehousesResult})} 
 }) 
@@ -47,8 +47,7 @@ app.get('/deleteItem/:id', async (req, res) => {
 }) 
 
 app.post('/editItem/:id', async (req, res) => {
-  const ItemID = req.params.id
-  const EditdItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
+  const ItemID = req.params.id, EditdItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}  
   await inventorymanager.EditInventoryItem(ItemID, EditdItemObject) 
   res.redirect('/viewItems')
 }) 
@@ -69,27 +68,24 @@ app.post('/submitNewWarehouse', async (req, res) => {
 }) 
 
 app.get('/getOneLocation/:id/:type', async (req, res) => {
-  const StorageID = req.params.id   
-  const WarehousesResult = await assigninventorymanager.FindWarehouse(StorageID)  
+  const StorageID = req.params.id, WarehousesResult = await assigninventorymanager.FindWarehouse(StorageID)  
   if(req.params.type === 'delete')(res.render('DeleteWarehouse', {OneWarehouses: WarehousesResult})) 
   if(req.params.type === 'edit')(res.render('EditWarehouse', {OneWarehouses: WarehousesResult})) 
 }) 
 
 app.get('/deleteLocation/:id/:location', async (req, res) => {  
-  const StorageID = req.params.id  
-  const locationName = req.params.location
+  const StorageID = req.params.id, locationName = req.params.location
   await assigninventorymanager.DeleteLocation(StorageID, locationName)
   res.redirect('/warehouses')
 }) 
 
 app.post('/submitEditedWarehouse/:id', async (req, res) => { 
-  const StorageID = req.params.id  
-  const EditedWarehouseObject = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned} 
+  const StorageID = req.params.id, EditedWarehouseObject = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned} 
   await assigninventorymanager.EditStoargeLocation(StorageID, EditedWarehouseObject)
   res.redirect('/warehouses')
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
 }) 
+
+app.get('/about', (req, res) => { res.render('/About')})
+
+app.listen(port, () => { console.log(`Example app listening on port ${port}`)}) 
 
