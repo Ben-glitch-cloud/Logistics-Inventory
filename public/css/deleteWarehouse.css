@@ -35,31 +35,39 @@ body{
 .title ul li:hover{
     color: #6699CC; 
     text-decoration: underline;
-}
+} 
 
-.ItemsList{
+.ItemInfoCon{
     width: 100%; 
     display: flex; 
-    justify-content: center; 
-    align-items: center;
+    justify-content: center;
 }
 
-.ItemsList{
-    width: 100%; 
+.ItemInfoPage{
     display: flex; 
     justify-content: center; 
+    flex-direction: column; 
     align-items: center;
+    width: 60%;
+    margin: 0px; 
+    padding: 0px;
 }
 
-table {
-    width: 80%;
-    margin: 0% 2.5%;  
-    border-collapse: separate; 
-}  
+.Information{
+    display: flex; 
+    width: 100%;
+    justify-content: center; 
+} 
 
-tr{
-    
-}  
+.Information p{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 18px; 
+    color: #E08955;
+}
+
+table{
+    width: 50%;  
+}   
 
 th{
     height: 40px; 
@@ -68,53 +76,34 @@ th{
     background-color: #6699CC;
     color: white; 
     border: 2px solid white; 
-   padding: 0px 5px;
+    padding: 0px 5px; 
+    font-size: 20px;
 }
 
+tr{
+    height: 30px; 
+    border-radius: 5px;
+} 
+
 td{
-    border: 2px solid white; 
+   border: 2px solid white; 
     font-family: Arial, Helvetica, sans-serif; 
     padding: 5px 10px; 
     background-color: #CDDEEE;
     border-radius: 5px;
     text-align: center;
-} 
-
-.NavTableArea{
-   display: flex; 
-   justify-content: center; 
-   align-items: center; 
-   align-content: center;
-   flex-direction: row; 
-    background-color: white;
-} 
-
-.NavTableArea input{
-    margin: 0px 5px;
-} 
-
-.Delete{
-    background-color: #DB1F48; 
-    border-radius: 5px; 
-    color: white; 
-    border: 2px solid #DB1F48;
-}  
-
-.Delete:hover{
-    background-color: #FFB7B0;
-    border: 2px solid #FFB7B0; 
-    color: black;
 }
 
-.Edit{
-    background-color: #01949A; 
-    border-radius: 5px; 
-    color: white; 
-    border: 2px solid #01949A;
+input{
+    padding: 5px 12px; 
+    font-size: 15px; 
+    margin-top: 20px; 
+    background-color: #CDDEEE; 
+    border: 2px #CDDEEE solid; 
+    border-radius: 5px;
 } 
 
-.Edit:hover{
-    background-color: #E9EAE0;
-    border: 2px solid #E9EAE0; 
-    color: black;
+input:hover{
+    background-color: #6699CC; 
+    border: 2px #6699CC solid;
 }

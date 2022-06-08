@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/createWarehouse.css">
     <title>Document</title>
 </head>
-<body>
+<body> 
+    <div class="title">
+        <p>BL Inventory Manager</p>
+        <ul>
+            <li><a href="/viewItems">View All Items</a></li>  
+            <li><a href="/warehouses">View All Warehouses</a></li>
+            <li><a href="/addItem">Add Item</a></li> 
+            <li><a href="/addNewWarehouse">Add Warehouses</a></li> 
+            <li>About</li>
+        </ul>
+    </div>  
     <div class="formCon"> 
         <form method="POST" name="newStorageForm" action="/submitNewWarehouse">   
-            <p class="formHeader">Create Item</p>
+            <p class="formHeader">Create Warehouse</p>
             <label>Location</label>
             <input type="text" name="location"/>
             <label>Warehouses Name</label>
-            <input type="text" name="warehousesName"/>
+            <input type="text" name="warehouseName"/>
             <label>Warehouse</label> 
             <select name="warehouseAssigned"> 
                 <option>Warehouse in use</option>

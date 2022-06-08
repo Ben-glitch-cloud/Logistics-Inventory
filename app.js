@@ -59,12 +59,32 @@ app.get('/warehouses', async (req, res) => {
 })  
 
 app.get('/addNewWarehouse', (req, res) => {
-  res.render('CreateStoarge')
+  res.render('CreateWarehouse')
 })
 
 app.post('/submitNewWarehouse', async (req, res) => {
-  const NewStoargeLocation = {location: req.body.location, warehousesName: req.body.warehousesName, currentOperationalStatus: req.body.warehouseAssigned} 
+  const NewStoargeLocation = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned} 
   await assigninventorymanager.CreateNewStoargeLocation(NewStoargeLocation)
+  res.redirect('/warehouses')
+}) 
+
+app.get('/getOneLocation/:id/:type', async (req, res) => {
+  const StorageID = req.params.id   
+  const WarehousesResult = await assigninventorymanager.FindWarehouse(StorageID)  
+  if(req.params.type === 'delete')(res.render('DeleteWarehouse', {OneWarehouses: WarehousesResult})) 
+  if(req.params.type === 'edit')(res.render('EditWarehouse', {OneWarehouses: WarehousesResult})) 
+}) 
+
+app.get('/deleteLocation/:id', async (req, res) => {  
+  const StorageID = req.params.id 
+  await assigninventorymanager.DeleteLocation(StorageID)
+  res.redirect('/warehouses')
+}) 
+
+app.post('/submitEditedWarehouse/:id', async (req, res) => { 
+  const StorageID = req.params.id  
+  const EditedWarehouseObject = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned} 
+  await assigninventorymanager.EditStoargeLocation(StorageID, EditedWarehouseObject)
   res.redirect('/warehouses')
 })
 

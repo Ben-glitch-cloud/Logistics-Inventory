@@ -24,8 +24,20 @@ class AssignInventoryManager{
         }finally{
             await client.close(); 
         } 
-    } 
+    }  
 
+    async FindWarehouse(StorageID){
+        try{
+            await client.connect()
+            const ItemResult = await client.db("StorageFacilities").collection("WarehousesAndLocations").findOne({'_id': ObjectId(StorageID)}) 
+            return ItemResult
+        }catch(error){
+            console.log(`Error: ${error}`)
+        }finally{
+            await client.close()
+        }
+    }
+ 
     async CreateNewStoargeLocation(NewStoargeLocation){
         try{
             await client.connect();  
@@ -44,6 +56,30 @@ class AssignInventoryManager{
         let CurrentDate = new Date() 
         NewStoargeLocation['timeStamp'] = CurrentDate.toDateString().split(' ').join('/') 
         return NewStoargeLocation
+    } 
+
+    async EditStoargeLocation(StorageID, EditedWarehouseObject){
+        try{
+            await client.connect()
+            await client.db("StorageFacilities").collection("WarehousesAndLocations").updateOne({_id: ObjectId(StorageID)}, {$set: EditedWarehouseObject}) 
+            return true
+        }catch(error){
+            console.log(`Error ${error}`)
+        }finally{
+            client.close()
+        }
+    }
+
+    async DeleteLocation(StorageID){
+        try{
+            await client.connect()
+            await client.db("StorageFacilities").collection("WarehousesAndLocations").deleteOne({'_id': ObjectId(StorageID)}) 
+            return true
+        }catch(error){
+            console.log(`Error: ${error}`)
+        }finally{
+            client.close()
+        }
     }
 }
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/deleteWarehouse.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="title">
+        <p>BL Inventory Manager</p>
+        <ul>
+            <li><a href="/viewItems">View All Items</a></li>  
+            <li><a href="/warehouses">View All Warehouses</a></li>
+            <li><a href="/addItem">Add Item</a></li> 
+            <li><a href="/addNewWarehouse">Add Warehouses</a></li> 
+            <li>About</li>
+        </ul>
+    </div>   
+    <div class="Information">
+        <p>If you delete a warehouse from the database then all items with that location will default to not assigned.</p>
+    </div>
+    <div class="ItemInfoCon">   
+        <div class="ItemInfoPage"> 
+            <table> 
+                <col>
+                <colgroup span="2"></colgroup>
+                <tr>
+                    <th colspan="2" scope="colgroup">Warehouse Information</th> 
+                </tr> 
+                <tr>
+                    <td>Location</td>
+                    <td><%= OneWarehouses['location'] %></td>
+                </tr>
+                <tr>
+                    <td>Warehouse Name</td>
+                    <td><%= OneWarehouses['warehouseName'] %></td>
+                </tr> 
+                <tr>
+                    <td>Current Operationa lStatus</td>
+                    <td><%= OneWarehouses['currentOperationalStatus'] %></td>
+                </tr> 
+                <tr>
+                    <td>Date</td> 
+                    <td><%= OneWarehouses['timeStamp'] %></td>
+                </tr>
+            </table>
+            <form method='GET' action="/deleteLocation/<%= OneWarehouses['_id'] %>"> 
+                <input type='submit' value='Delete Warehouse'/>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

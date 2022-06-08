@@ -4,14 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/warehouses.css">
     <title>Document</title>
-</head>
-<body>
-    <% WarehousesList.forEach((item) => {%> 
-        <p><%= item['location'] %></p> 
-        <p><%= item['warehouseName'] %></p>
-        <p><%= item['currentOperationalStatus'] %></p> 
-        <p><%= item['timeStamp']%></p>
-    <% })%>
+</head> 
+<body> 
+    <div class="title">
+        <p>BL Inventory Manager</p>
+        <ul>
+            <li><a href="/viewItems">View All Items</a></li>  
+            <li><a href="/warehouses">View All Warehouses</a></li>
+            <li><a href="/addItem">Add Item</a></li> 
+            <li><a href="/addNewWarehouse">Add Warehouses</a></li> 
+            <li>About</li>
+        </ul>
+    </div> 
+    <div class="ItemsList">
+        <table>
+            <tr>
+                <th>Location</th> 
+                <th>Warehouse</th> 
+                <th>Current Operational Status</th> 
+                <th>Time of creation</th>  
+            </tr>   
+            <% WarehousesList.forEach((item) => { %> 
+                <tr>
+                    <td><%= item['location'] %></td> 
+                    <td><%= item['warehouseName'] %></td>
+                    <% if(item['currentOperationalStatus']){ %> 
+                        <td>Operating</td>
+                    <% } else { %>   
+                        <td>Not Operating</td>
+                    <% } %>
+
+                    <td><%= item['timeStamp']%></td> 
+                    <td class="NavTableArea"> 
+                        <form method='GET' action="/getOneLocation/<%= item['_id'] %>/delete"> 
+                            <input class="Delete" type='submit' value='Delete'/>
+                        </form>  
+
+                        <form method='GET' action="/getOneLocation/<%= item['_id'] %>/edit"> 
+                            <input class="Edit" type='submit' value='Edit'/>
+                        </form>
+                    </td>
+                </tr>  
+            <% }) %> 
+        </table>
+    </div>
+
 </body>
 </html>
