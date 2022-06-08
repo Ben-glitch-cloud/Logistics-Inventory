@@ -16,6 +16,25 @@
 
 <p>A feature I would wish to add would enable me to see, in real time, how much inventory is a warehouse, a warning or alert for low inventory level, and , fast selling inventory. Certain goods, ie perishable, may require specific storage solutions. </p>
 
+<h2>Project Tech Test Requirements</h2> 
+
+<p>Task areas completed: ✅</p>
+
+<ul> 
+  <li><b>Basic CRUD Functionality. You should be able to:</b></li> 
+  <li>✅Create inventory items</li> 
+  <li>✅Edit Them</li>
+  <li>✅Delete Them</li> 
+  <li>✅View a list of them</li>
+</ul> 
+
+<ul>
+  <li><b>ONLY ONE OF THE FOLLOWING (We will only evaluate the first feature chosen, so please only choose one)</b></li>
+  <li>When deleting, allow deletion comments and undeletion</li>
+  <li>✅<b>Ability to create warehouses/locations and assign inventory to specific locations.</b></li>
+  <li>Ability to create “shipments” and assign inventory to the shipment, and adjust inventory appropriately</li>
+</ul>
+
 <h2 align='center'>Project Set-up</h2>
 
 Step 1:
@@ -72,8 +91,6 @@ And your done 👏 ✅
 
 <h2 align='center'>User Stories</h2>  
 
-<p>Main CRUD Requirements</p>
-
 ``` 
 As a user
 I would like to see a list of Items 
@@ -96,9 +113,7 @@ So I can update warehouse information
 As a user 
 I would like to edit an item
 So I can update an item that has changed
-``` 
-
-<p>One listed Requirement</p> 
+```
 
 ``` 
 As a user 
