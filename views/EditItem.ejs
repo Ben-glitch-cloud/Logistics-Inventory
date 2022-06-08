@@ -30,9 +30,9 @@
         <label>Warehouse</label> 
         <select name="warehouseAssigned" id="warehouseAssigned"> 
             <option>Choose Warhouse</option>
-            <option>London</option>
-            <option>Southampton</option>
-            <option>Manchester</option>
+                    <% WarehousesList.forEach((item) => { %>
+                        <option><%= item['location'] %></option>
+                    <% }) %>
         </select> 
         <input type="submit" class="submit" value="Edit Item"/>
     </form> 

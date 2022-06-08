@@ -46,7 +46,7 @@
                     <td><%= OneWarehouses['timeStamp'] %></td>
                 </tr>
             </table>
-            <form method='GET' action="/deleteLocation/<%= OneWarehouses['_id'] %>"> 
+            <form method='GET' action="/deleteLocation/<%= OneWarehouses['_id'] %>/<%= OneWarehouses['location'] %>"> 
                 <input type='submit' value='Delete Warehouse'/>
             </form>
         </div>

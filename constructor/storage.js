@@ -70,10 +70,11 @@ class AssignInventoryManager{
         }
     }
 
-    async DeleteLocation(StorageID){
+    async DeleteLocation(StorageID, locationName){
         try{
             await client.connect()
             await client.db("StorageFacilities").collection("WarehousesAndLocations").deleteOne({'_id': ObjectId(StorageID)}) 
+            await client.db("CatalogueCollection").collection("InventoryItems").updateMany({warehouseAssigned: locationName}, { $set: {warehouseAssigned: 'Choose Warhouse'} })
             return true
         }catch(error){
             console.log(`Error: ${error}`)

@@ -28,11 +28,11 @@
                 <label>Quanity</label>
                 <input type="number" min="1" name='quanity'/>
                 <label>Warehouse</label> 
-                <select name="warehouseAssigned"> 
+                <select name="warehouseAssigned">   
                     <option>Choose Warhouse</option>
-                    <option>London</option>
-                    <option>Southampton</option>
-                    <option>Manchester</option>
+                    <% WarehousesList.forEach((item) => { %>
+                        <option><%= item['location'] %></option>
+                    <% }) %>
                 </select> 
                 <input class="submit" type="submit" value="submit"/>
             </form>

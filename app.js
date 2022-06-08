@@ -21,14 +21,13 @@ app.get('/viewItems', async (req, res) => {
     res.render('Items', {InventoryItemsList: AllInventoryResults})
 }) 
 
-app.get('/addItem', (req, res) => {
-  res.render('CreateItem')
+app.get('/addItem', async (req, res) => { 
+  const WarehousesResult = await assigninventorymanager.GetStorageLocations() 
+  res.render('CreateItem', {WarehousesList: WarehousesResult})
 }) 
 
 app.post('/submitNewItem', async (req, res) => { 
-
   const NewItemObject = {itemName: req.body.itemName, itemDescription: req.body.itemDescription, quantity: req.body.quanity, warehouseAssigned: req.body.warehouseAssigned}   
-
   await inventorymanager.CreateNewInventoryItem(NewItemObject) 
   res.redirect('/viewItems')
 }) 
@@ -36,8 +35,9 @@ app.post('/submitNewItem', async (req, res) => {
 app.get('/getOneItem/:id/:type', async (req, res) => {
   const ItemID = req.params.id  
   const ResultForOneItem = await inventorymanager.FindInventoryItem(ItemID)  
+  const WarehousesResult = await assigninventorymanager.GetStorageLocations()
   if(req.params.type === 'delete'){ res.render('DeleteItem', {InventoryItem: ResultForOneItem})} 
-  if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem})} 
+  if(req.params.type === 'edit'){ res.render('EditItem', {InventoryItem: ResultForOneItem, WarehousesList: WarehousesResult})} 
 }) 
 
 app.get('/deleteItem/:id', async (req, res) => {
@@ -75,9 +75,10 @@ app.get('/getOneLocation/:id/:type', async (req, res) => {
   if(req.params.type === 'edit')(res.render('EditWarehouse', {OneWarehouses: WarehousesResult})) 
 }) 
 
-app.get('/deleteLocation/:id', async (req, res) => {  
-  const StorageID = req.params.id 
-  await assigninventorymanager.DeleteLocation(StorageID)
+app.get('/deleteLocation/:id/:location', async (req, res) => {  
+  const StorageID = req.params.id  
+  const locationName = req.params.location
+  await assigninventorymanager.DeleteLocation(StorageID, locationName)
   res.redirect('/warehouses')
 }) 
 
