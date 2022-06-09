@@ -95,3 +95,17 @@ form label{
     background-color: #274472; 
     border: solid 2px #274472;
 }
+
+.messageError{
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 30px;
+} 
+
+.messageError p{
+    font-family: Arial, Helvetica, sans-serif; 
+    color: #E7625F;
+    font-size: 20px;
+}

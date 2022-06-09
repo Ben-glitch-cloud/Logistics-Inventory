@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require('express') 
 const ejs = require('ejs');
 const app = express()
 const router = express.Router();
 const port = 3000 
+const session = require('express-session')
 
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs').__express); 
@@ -15,7 +16,14 @@ const InventoryManager = require('./constructor/logistics')
 const AssignInventoryManager = require('./constructor/storage') 
 
 const assigninventorymanager = new AssignInventoryManager
-const inventorymanager = new InventoryManager
+const inventorymanager = new InventoryManager 
+
+let ErrorMessage = '' 
+
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(400).send('Wrong page name:(')
+})
 
 app.get('/', (req, res) => { res.redirect('/viewItems')})
 
@@ -56,21 +64,20 @@ app.post('/editItem/:id', async (req, res) => {
 
 app.get('/warehouses', async (req, res) => { 
   const WarehousesResult = await assigninventorymanager.GetStorageLocations()
+  ErrorMessage = ''
   res.render('Warehouses', {WarehousesList: WarehousesResult})
 })  
 
-app.get('/addNewWarehouse', (req, res) => { 
-  res.render('CreateWarehouse')
+app.get('/addNewWarehouse', (req, res) => {   
+  res.render('CreateWarehouse', {error: ErrorMessage})
 })
 
 app.post('/submitNewWarehouse', async (req, res) => {
   const NewStoargeLocation = {location: req.body.location, warehouseName: req.body.warehouseName, currentOperationalStatus: req.body.warehouseAssigned}  
   const FindNameResult = await assigninventorymanager.FindWarehouseByName(NewStoargeLocation['warehouseName'])  
-  // fix the flash message 
-  console.log(FindNameResult)
-  if(FindNameResult){ 
-    // req.flash('message', 'welcome key is present');
-    res.redirect('/addNewWarehouse')
+  if(FindNameResult){  
+    ErrorMessage = 'Two warehouses can not have the same name.'
+    res.redirect('/addNewWarehouse')  
   } else {
     await assigninventorymanager.CreateNewStoargeLocation(NewStoargeLocation)    
     res.redirect('/warehouses')

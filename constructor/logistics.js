@@ -35,7 +35,7 @@ class InventoryManager{
         return NewItemObject
     }
 
-    // create new item 
+    // creates a new item 
     async CreateNewInventoryItem(NewItemObject){ 
         const modifiedNewItemObject = this.NewItemInfo(NewItemObject)
         try{
@@ -49,6 +49,7 @@ class InventoryManager{
         }
     }  
 
+    // Finds an inventory item
     async FindInventoryItem(ItemID){
         try{
             await client.connect()
@@ -61,6 +62,7 @@ class InventoryManager{
         }
     } 
 
+    // Deletes an inventory item
     async DeleteInventoryItem(ItemID){
         try{
             await client.connect()
@@ -73,6 +75,7 @@ class InventoryManager{
         }
     } 
 
+    // Updates an inventory item
     async EditInventoryItem(ItemID, EditdItemObject){
         try{
             await client.connect()

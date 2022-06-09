@@ -17,7 +17,10 @@
             <li><a href="/addNewWarehouse" class="currentPage">Add Warehouses</a></li> 
             <li>About</li>
         </ul>
-    </div>  
+    </div>    
+    <div class="messageError">
+        <p><%=error%></p>
+    </div>
     <div class="formCon"> 
         <form method="POST" name="newStorageForm" action="/submitNewWarehouse" onsubmit="return validateForm()">   
             <p class="formHeader">Create Warehouse</p>

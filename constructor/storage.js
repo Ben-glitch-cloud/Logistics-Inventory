@@ -13,7 +13,9 @@ const uri = `mongodb+srv://${userName}:${Password}@catalogueinventory.xontjal.mo
 
 const client = new MongoClient(uri);   
 
-class AssignInventoryManager{
+class AssignInventoryManager{ 
+
+    // Gets a list of warehouses
     async GetStorageLocations() {
         try{
             await client.connect();  
@@ -26,6 +28,7 @@ class AssignInventoryManager{
         } 
     }  
 
+    // Finds one warehouse
     async FindWarehouse(StorageID){
         try{
             await client.connect()
@@ -38,6 +41,7 @@ class AssignInventoryManager{
         }
     } 
 
+    // Finds one warehouse with a name and double checks it does not already exited. 
     async FindWarehouseByName(WareHouseName){
         try{
             await client.connect()
@@ -49,7 +53,8 @@ class AssignInventoryManager{
             await client.close()
         }
     }
- 
+    
+    // Creats a new warehouse 
     async CreateNewStoargeLocation(NewStoargeLocation){
         try{
             await client.connect();  
@@ -63,6 +68,7 @@ class AssignInventoryManager{
         }
     } 
 
+    // Updates the warehouse Object with Current Operational status and date
     NewStorageInfo(NewStoargeLocation){
         NewStoargeLocation['currentOperationalStatus'] === 'Warehouse in use' ? NewStoargeLocation['currentOperationalStatus'] = true : NewStoargeLocation['currentOperationalStatus'] = false 
         let CurrentDate = new Date() 
@@ -70,6 +76,7 @@ class AssignInventoryManager{
         return NewStoargeLocation
     } 
 
+    // Updates a warehouse with new infomation
     async EditStoargeLocation(StorageID, EditedWarehouseObject){
         try{
             await client.connect()
@@ -82,6 +89,7 @@ class AssignInventoryManager{
         }
     }
 
+    // Deletes a warehouse 
     async DeleteLocation(StorageID, locationName){
         try{
             await client.connect()
