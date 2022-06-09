@@ -89,6 +89,30 @@ $ http://localhost:3000
 
 And your done 👏 ✅
 
+<h2 align='center'>How to use</h2>  
+
+<h3>Item</h3> 
+
+<b>View all items</b>: To view all items click on the navigation bar link called view all items
+
+<b>Create new item</b>: To create an inventory item click on the navigation bar link called Add Item, which will send you to a page to fill in the necessary information. Ones that is complete click on the sumbit button, and you should be send to the page called view all items. 
+
+<b>Update an Item</b>: To update an item click on the navigation bar link called view all items. Find the item you wish to update, ones found go to the right hand side of the page and click on the edit button. Change the information in the form to your hearts content and press submit. 
+
+<b>Delete an Item</b>: To delete an item click on the navigation bar link called view all items. Find the item you wish to delete, ones found go to the right hand side of the page and click on the delete button. View the item to make sure it is the one you want to delete, then press the delete button. 
+
+<b>To view one item</b>: To view one item click on the navigation bar link called view all items. Find the item you wish to view, ones found go to the right hand side of the page and click on the view item button. You will be sent to a page to view the item on its own.
+
+<h3>Warehouse</h3>
+
+<b>View all warehouses</b>: To view all warehouses click on the navigation bar link called view all warehouses
+
+<b>Create new warehouse</b>: To create a warehouse click on the navigation bar link called Add warehouse, which will send you to a page to fill in the necessary information. Ones that is complete click on the sumbit button, and you should be at sent to the page called view all warehouse. 
+
+<b>Update a warehouse</b>: To update a warehouse click on the navigation bar link called view all warehouses. Find the warehouse you wish to update, ones found go to the right hand side of the page and click on the edit button. Change the information in the form to your hearts content and press submit. 
+
+<b>Delete a warehouse</b>: To delete a warehouse click on the navigation bar link called view all warehouses. Find the warehouse you wish to delete, ones found go to the right hand side of the page and click on the delete button. View the warehouse to make sure it is the one you want to delete, then press the delete button.
+
 <h2 align='center'>User Stories</h2>  
 
 ``` 
